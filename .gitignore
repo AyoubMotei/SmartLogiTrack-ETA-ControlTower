@@ -1,0 +1,29 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# --- Airflow ---
+
+logs/*
+!logs/.gitkeep
+
+# --- Données  ---
+
+data/*.parquet
+data/*.csv
+
+# --- Modèles IA ---
+
+models/*.pkl
+
+# --- Système & IDE ---
+.DS_Store
+.vscode/
+.idea/
+
+# --- Secrets ---
+.env
