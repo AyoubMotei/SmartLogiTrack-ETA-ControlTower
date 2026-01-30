@@ -4,9 +4,11 @@ psycopg2-binary
 # Spark
 pyspark
 
-pandas
+pandas<3.0.0
 numpy
 scikit-learn
+pyarrow<16.0.0
+fastparquet
 
 matplotlib
 seaborn
