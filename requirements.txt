@@ -7,7 +7,7 @@ pyspark
 pandas<3.0.0
 numpy
 scikit-learn
-pyarrow<16.0.0
+pyarrow
 fastparquet
 
 matplotlib
