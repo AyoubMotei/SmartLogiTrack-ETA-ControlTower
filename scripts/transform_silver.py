@@ -13,7 +13,7 @@ def main():
         .config("spark.driver.extraClassPath", jar_path) \
         .getOrCreate()
 
-    print("🚀 Début de la transformation Silver (Mode Local JAR)...")
+    print("Début de la transformation Silver (Mode Local JAR)...")
 
     # 2. Chargement des données Bronze
     bronze_path = "data/bronze_taxi.parquet"
@@ -24,7 +24,7 @@ def main():
     df = spark.read.parquet(bronze_path)
 
     # 3. Nettoyage et Filtrage
-    print("🧹 Nettoyage des données...")
+    print("Nettoyage des données...")
     df_filtered = df.filter(
         (col("trip_distance") > 0) & (col("trip_distance") <= 200) &
         (col("passenger_count") > 0) &
@@ -32,7 +32,7 @@ def main():
     )
 
     # 4. Feature Engineering
-    print("🛠 Engineering des caractéristiques...")
+    print("Engineering des caractéristiques...")
     df_silver = df_filtered.withColumn("pickup_hour", hour(col("tpep_pickup_datetime"))) \
                            .withColumn("day_of_week", dayofweek(col("tpep_pickup_datetime"))) \
                            .withColumn("month", month(col("tpep_pickup_datetime"))) \
@@ -48,7 +48,7 @@ def main():
         "driver": "org.postgresql.Driver"
     }
 
-    print("📥 Chargement vers la base de données Postgres (table silver_taxi_trips)...")
+    print("Chargement vers la base de données Postgres (table silver_taxi_trips)...")
     df_silver.write.format("jdbc") \
         .option("url", jdbc_url) \
         .option("dbtable", "silver_taxi_trips") \
@@ -58,7 +58,7 @@ def main():
         .mode("overwrite") \
         .save()
 
-    print("✅ Transformation terminée et données chargées dans la table silver_taxi_trips.")
+    print("Transformation terminée et données chargées dans la table silver_taxi_trips.")
     spark.stop()
 
 if __name__ == "__main__":
