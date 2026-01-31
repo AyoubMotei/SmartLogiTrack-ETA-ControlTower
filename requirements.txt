@@ -24,3 +24,5 @@ pydantic
 joblib
 python-dotenv 
 pytest
+python-multipart
+httpx
